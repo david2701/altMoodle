@@ -8,14 +8,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  TextEditingController userController;
-  TextEditingController keyController;
+  TextEditingController keyController, urlController, userController;
 
   @override
   void initState() {
     super.initState();
     userController = TextEditingController();
     keyController = TextEditingController();
+    urlController = TextEditingController();
   }
 
   @override
@@ -32,9 +32,17 @@ class _SplashScreenState extends State<SplashScreen> {
             obscureText: true,
             decoration: InputDecoration(helperText: 'Password'),
           ),
+          TextField(
+            controller: urlController,
+            decoration: InputDecoration(helperText: 'Moodle URL'),
+          ),
+          Text(
+              'Formatting:\nWithout http:// or https:// at the beginning AND with leading /'),
           MaterialButton(
+            child: Text('Login'),
             onPressed: () {
               putCredentials(userController.text, keyController.text);
+              putUrl(urlController.text);
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -30,3 +30,11 @@ putCredentials(String user, String key) {
 getCredentials() async {
   return await box.get('credentials');
 }
+
+putUrl(String url) async {
+  box.put('url', url);
+}
+
+Future<String> getUrl() async {
+  return await box.get('url');
+}

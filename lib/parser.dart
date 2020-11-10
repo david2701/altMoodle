@@ -27,6 +27,8 @@ class ScraperLayer extends StatefulWidget {
 }
 
 class _ScraperLayerState extends State<ScraperLayer> {
+  String url;
+
   WebViewController _webViewController;
 
   @override
@@ -34,6 +36,12 @@ class _ScraperLayerState extends State<ScraperLayer> {
     super.initState();
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
     getItems();
+    getMirror();
+    initGetEvents();
+  }
+
+  getMirror() async {
+    url = await getUrl();
   }
 
   initGetEvents() async {
@@ -41,7 +49,7 @@ class _ScraperLayerState extends State<ScraperLayer> {
       (creds) async => await login(creds.user, creds.key),
     );
     await getCalendarUrl();
-    getUrl().then(
+    getICSUrl().then(
       (value) => getICS(value).then(
         (icsString) => getEvents(icsString),
       ),
@@ -76,8 +84,8 @@ class _ScraperLayerState extends State<ScraperLayer> {
     try {
       await Future.delayed(
           const Duration(seconds: 2),
-          () => _webViewController
-              .loadUrl('https://195832.logineonrw-lms.de/calendar/export.php'));
+          () =>
+              _webViewController.loadUrl('https://${url}calendar/export.php'));
       await Future.delayed(
         const Duration(seconds: 2),
         () => _webViewController.evaluateJavascript('''
@@ -101,7 +109,7 @@ class _ScraperLayerState extends State<ScraperLayer> {
     }
   }
 
-  Future<String> getUrl() async {
+  Future<String> getICSUrl() async {
     String url;
     await Future.delayed(Duration(seconds: 5),
         (() async => url = await _webViewController.evaluateJavascript('''
@@ -130,7 +138,7 @@ class _ScraperLayerState extends State<ScraperLayer> {
       children: [
         WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: 'https://195832.logineonrw-lms.de/',
+          initialUrl: url,
           onWebViewCreated: (WebViewController webViewController) {
             _webViewController = webViewController;
           },
