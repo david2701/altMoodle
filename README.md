@@ -1,5 +1,7 @@
 # altMoodle ![GitHub issues](https://img.shields.io/github/issues/phibr0/altMoodle) ![](https://tokei.rs/b1/github/phibr0/altMoodle)
 
+[**Privacy Policy and Terms of Use**](https://phibr0.github.io/altMoodle)
+
 [Current Progress/Roadmap](https://github.com/phibr0/altMoodle/projects/1)
 
 altMoodle is a alternative mobile Client for the Moodle and Logineo LMS. It's specially designed for ease of use and simplicity. 
