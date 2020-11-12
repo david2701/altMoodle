@@ -1,4 +1,4 @@
-# altMoodle
+# altMoodle ![GitHub issues](https://img.shields.io/github/issues/phibr0/altMoodle) ![](https://tokei.rs/b1/github/phibr0/altMoodle)
 
 [Current Progress/Roadmap](https://github.com/phibr0/altMoodle/projects/1)
 
