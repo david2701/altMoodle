@@ -19,12 +19,13 @@ class MyApp extends StatelessWidget {
       title: 'Better LMS',
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        primarySwatch: Colors.deepPurple,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: Splash(),
     );

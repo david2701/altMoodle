@@ -27,7 +27,7 @@ putCredentials(String user, String key) {
   box.put('credentials', creds);
 }
 
-getCredentials() async {
+Future<Credentials> getCredentials() async {
   return await box.get('credentials');
 }
 

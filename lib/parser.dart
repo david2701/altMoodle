@@ -34,14 +34,14 @@ class _ScraperLayerState extends State<ScraperLayer> {
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
     getItems();
-    getMirror();
-    initGetEvents();
   }
 
   getMirror() async {
-    url = await getUrl();
+    await getUrl().then((value) {
+      url = 'https://$value/';
+      _webViewController.loadUrl(url);
+    });
   }
 
   initGetEvents() async {
@@ -82,10 +82,8 @@ class _ScraperLayerState extends State<ScraperLayer> {
 
   getCalendarUrl() async {
     try {
-      await Future.delayed(
-          const Duration(seconds: 2),
-          () =>
-              _webViewController.loadUrl('https://${url}calendar/export.php'));
+      await Future.delayed(const Duration(seconds: 2),
+          () => _webViewController.loadUrl('${url}calendar/export.php'));
       await Future.delayed(
         const Duration(seconds: 2),
         () => _webViewController.evaluateJavascript('''
@@ -138,9 +136,9 @@ class _ScraperLayerState extends State<ScraperLayer> {
       children: [
         WebView(
           javascriptMode: JavascriptMode.unrestricted,
-          initialUrl: url,
           onWebViewCreated: (WebViewController webViewController) {
             _webViewController = webViewController;
+            getMirror();
           },
         ),
         Scaffold(
