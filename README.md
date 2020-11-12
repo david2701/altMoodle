@@ -1,5 +1,7 @@
 # altMoodle
 
+[Current Progress/Roadmap](https://github.com/phibr0/altMoodle/projects/1)
+
 altMoodle is a alternative mobile Client for the Moodle and Logineo LMS. It's specially designed for ease of use and simplicity. 
 
 ## Installation
